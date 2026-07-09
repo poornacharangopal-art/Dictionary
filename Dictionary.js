@@ -8,6 +8,7 @@ const server=http.createServer((req,res)=>{
             <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
     <title>Dictionary App</title>
     <style>
         *{
@@ -101,7 +102,7 @@ const server=http.createServer((req,res)=>{
     }
     if(parsedurl.pathname=='/dictionary'){
         let word=parsedurl.searchParams.get("word");
-        const apireq=https.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`,(apires)=>{
+        const apireq=https.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`,(apires)=>{
             let data='';
             apires.on("data",(chunks)=>{
                 data+=chunks;
